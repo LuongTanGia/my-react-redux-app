@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchUsers, addUser, updateUser, deleteUser } from "../action/action";
-
+import ListUser from "./ListUser";
 const UserList = ({ users, fetchUsers, addUser, updateUser, deleteUser }) => {
   useEffect(() => {
     fetchUsers();
@@ -51,6 +51,10 @@ const UserList = ({ users, fetchUsers, addUser, updateUser, deleteUser }) => {
           </li>
         ))}
       </ul>
+
+      <div>
+        <ListUser />
+      </div>
     </div>
   );
 };
