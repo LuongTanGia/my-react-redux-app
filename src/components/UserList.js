@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { fetchUsers, addUser, updateUser, deleteUser } from "../action/action";
-import ListUser from "./ListUser";
-const UserList = ({ users, fetchUsers, addUser, updateUser, deleteUser }) => {
-  useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
+import { POSTAPI } from "../action/action";
+import API from "../API/API";
+import { Link } from "react-router-dom";
+
+const UserList = ({ data, POSTAPI }) => {
+  const [selectedOption, setSelectedOption] = useState("");
   const [user, setUser] = useState({
-    name: "",
+    User: "",
+    Pass: "",
   });
 
   const onChangeInput = (e) => {
@@ -15,59 +16,85 @@ const UserList = ({ users, fetchUsers, addUser, updateUser, deleteUser }) => {
     setUser({ ...user, [name]: value });
   };
   const handleAddUser = () => {
-    addUser(user);
+    localStorage.setItem("userLogin", btoa(JSON.stringify(user)));
+    POSTAPI(API.DANHSACHDULIEU, user);
   };
-  const handleData = (name) => {
-    setUser({ name: name });
-  };
-  const handleUpdateUser = (id) => {
-    const updatedUser = user;
-    updateUser(id, updatedUser);
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+    localStorage.setItem("remoteDB", event.target.value);
   };
 
-  const handleDeleteUser = (id) => {
-    deleteUser(id);
+  const handleLogin = () => {
+    POSTAPI(API.DANGNHAP, { TokenID: data.TKN, RemoteDB: selectedOption });
   };
-
-  console.log(users);
   return (
     <div>
-      <input
-        type="text"
-        name="name"
-        required
-        placeholder="name"
-        value={user.name}
-        onChange={onChangeInput}
-      />
-      <button onClick={handleAddUser}>Add User</button>
-
-      <ul>
-        {users.map((user) => (
-          <li key={user.id} onClick={() => handleData(user.name)}>
-            {user.name}
-            <button onClick={() => handleUpdateUser(user.id)}>Update</button>
-            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-
-      <div>
-        <ListUser />
+      <div className="form-group">
+        <input
+          className="form-control"
+          type="email"
+          name="User"
+          required
+          //   autoComplete="on"
+          placeholder="Email *"
+          value={user.User}
+          onChange={onChangeInput}
+        />
       </div>
+      <div className="form-group">
+        <input
+          className="form-control"
+          type="password"
+          name="Pass"
+          required
+          // autoComplete="on"
+          placeholder="Password *"
+          value={user.Pass}
+          onChange={onChangeInput}
+        />
+      </div>
+      <div className="form-group">
+        <button onClick={handleAddUser}>submit</button>
+      </div>
+      {data.DataResults ? (
+        data.DataResults.map((item, index) =>
+          item.RemoteDB ? (
+            <div key={index}>
+              {item.RemoteDB}
+              <input
+                type="radio"
+                value={item.RemoteDB}
+                checked={selectedOption === item.RemoteDB}
+                name="remoteDB"
+                onChange={handleOptionChange}
+              />
+            </div>
+          ) : null
+        )
+      ) : (
+        <p className="error_login">{data.DataErrorDescription}</p>
+      )}
+      <button onClick={handleLogin}>Login</button>
+
+      {data.MappingUser ? (
+        data.DataResults.map((item, index) => (
+          <div key={index}>{item.TenChucNang}</div>
+        ))
+      ) : (
+        <p className="error_login">{data.DataErrorDescription}</p>
+      )}
+
+      <Link to="/list">TO LIST</Link>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  users: state.users,
+  data: state.data,
 });
 
 const mapDispatchToProps = {
-  fetchUsers,
-  addUser,
-  updateUser,
-  deleteUser,
+  POSTAPI,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

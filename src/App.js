@@ -1,16 +1,33 @@
 // index.js
-import React from "react";
-import { Provider } from "react-redux";
-import store from "./store";
+import React, { useEffect } from "react";
 import UserList from "./components/UserList";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import ListData from "./components/ListData";
+import { GETDATA } from "./action/action";
+import { connect } from "react-redux";
+import API from "./API/API";
 
-const App = () => (
-  <Provider store={store}>
-    <div>
-      <h1>Redux CRUD Example</h1>
-      <UserList />
-    </div>
-  </Provider>
-);
+const App = ({ GETDATA }) => {
+  const userLogin = localStorage.getItem("userLogin");
+  const RemoteDB = localStorage.getItem("remoteDB");
 
-export default App;
+  const userLoginAtob = JSON.parse(userLogin ? atob(userLogin) : userLogin);
+  useEffect(() => {
+    GETDATA(API.DANHSACHDULIEU, API.DANGNHAP, userLoginAtob, RemoteDB);
+    console.log(1);
+  }, [GETDATA]);
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/list" element={<ListData />} />
+      </Routes>
+    </Router>
+  );
+};
+const mapDispatchToProps = {
+  GETDATA,
+};
+
+export default connect(null, mapDispatchToProps)(App);
