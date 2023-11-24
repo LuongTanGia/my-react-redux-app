@@ -12,6 +12,11 @@ export const POSTAPI = (API, dataPost) => {
   };
 };
 
+// export const SETMODE = (mode, dispatch) => {
+//   // type: "SETMODE",
+//   return dispatch({ type: "SETMODE", payload: mode });
+// };
+
 export const GETDATA = (API, API2, dataPost, RemoteDB) => {
   return async (dispatch) => {
     try {
