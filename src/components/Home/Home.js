@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../SideBar/SideBar";
+import Header from "../Hearder/Header";
 
-function Home() {
-  return (
-    <div>
-      <SideBar />
-    </div>
-  );
-}
+import MainPage from "../MainPage/MainPage";
+
+const Home = ({ handleToggleSidebar, isSidebarVisible }) => {
+    return (
+        <div>
+            <Header handleToggleSidebar={handleToggleSidebar} />
+            <div className={isSidebarVisible ? "toggle-sidebar" : ""}>
+                <SideBar />
+            </div>
+            <MainPage isSidebarVisible={isSidebarVisible} />
+        </div>
+    );
+};
 
 export default Home;

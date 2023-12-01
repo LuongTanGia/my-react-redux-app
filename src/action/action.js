@@ -1,15 +1,19 @@
 import axios from "axios";
 
 export const POSTAPI = (API, dataPost) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(API, dataPost);
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(API, dataPost);
 
-      dispatch({ type: "POSTAPI", payload: response.data, loading: true });
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
-  };
+            dispatch({
+                type: "POSTAPI",
+                payload: response.data,
+                loading: true,
+            });
+        } catch (error) {
+            console.error("Error adding user:", error);
+        }
+    };
 };
 
 // export const SETMODE = (mode, dispatch) => {
@@ -18,21 +22,41 @@ export const POSTAPI = (API, dataPost) => {
 // };
 
 export const GETDATA = (API, API2, dataPost, RemoteDB) => {
-  return async (dispatch) => {
-    try {
-      const DATADULIEU = await axios.post(API, dataPost);
-      const DATADANGNHAP = await axios.post(API2, {
-        TokenID: DATADULIEU.data.TKN,
-        RemoteDB: RemoteDB,
-      });
+    return async (dispatch) => {
+        try {
+            const DATADULIEU = await axios.post(API, dataPost);
+            const DATADANGNHAP = await axios.post(API2, {
+                TokenID: DATADULIEU.data.TKN,
+                RemoteDB: RemoteDB,
+            });
+            localStorage.setItem("TKN", DATADANGNHAP.data.TKN);
 
-      dispatch({ type: "GETDATA", payload: DATADANGNHAP.data });
-    } catch (error) {
-      console.error("Error adding user:", error);
-    }
-  };
+            dispatch({ type: "GETDATA", payload: DATADANGNHAP.data });
+        } catch (error) {
+            console.error("Error adding user:", error);
+        }
+    };
 };
 
+export const DATATONGHOP = (API, dataPost) => {
+    return async (dispatch) => {
+        try {
+            const DATATONGHOP = await axios.post(API, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${dataPost}`,
+                },
+            });
+            console.log(DATATONGHOP, "dataTongHop");
+            dispatch({
+                type: "GETDATATONGHOP",
+                payload: DATATONGHOP,
+            });
+        } catch (error) {
+            console.error("Error adding user:", error);
+        }
+    };
+};
 // export const fetchUsers = () => {
 //   return async (dispatch) => {
 //     try {
