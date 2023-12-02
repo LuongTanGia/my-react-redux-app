@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/my-react-redux-app/static/css/main.e7a8797d.css",
+    "main.js": "/my-react-redux-app/static/js/main.598b6302.js",
+    "static/js/787.77e5b46f.chunk.js": "/my-react-redux-app/static/js/787.77e5b46f.chunk.js",
+    "static/media/remixicon.svg?t=1690730386070": "/my-react-redux-app/static/media/remixicon.50bf1949f666e36cab12.svg",
+    "static/media/boxicons.svg": "/my-react-redux-app/static/media/boxicons.61829f134e586c0c9e89.svg",
+    "static/media/remixicon.eot?t=1690730386070": "/my-react-redux-app/static/media/remixicon.53ec05edb4b6864b45b1.eot",
+    "static/media/remixicon.ttf?t=1690730386070": "/my-react-redux-app/static/media/remixicon.4aa0fd158658e2a40e79.ttf",
+    "static/media/boxicons.eot": "/my-react-redux-app/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
+    "static/media/boxicons.woff": "/my-react-redux-app/static/media/boxicons.d12afc36557395143e4b.woff",
+    "static/media/boxicons.ttf": "/my-react-redux-app/static/media/boxicons.db9ddb1898dbd76badca.ttf",
+    "static/media/remixicon.woff?t=1690730386070": "/my-react-redux-app/static/media/remixicon.affd60ca37df38cfee4f.woff",
+    "static/media/bootstrap-icons.woff?": "/my-react-redux-app/static/media/bootstrap-icons.449ad8adf6ae0424b7ed.woff",
+    "static/media/remixicon.woff2?t=1690730386070": "/my-react-redux-app/static/media/remixicon.821a773710130bcf4674.woff2",
+    "static/media/bootstrap-icons.woff2?": "/my-react-redux-app/static/media/bootstrap-icons.dea24bf5a7646d8b84e7.woff2",
+    "static/media/boxicons.woff2": "/my-react-redux-app/static/media/boxicons.df635aaf04cd75132f62.woff2",
+    "static/media/backgroud.jfif": "/my-react-redux-app/static/media/backgroud.86404e5fa59d690f80cf.jfif",
+    "static/media/viettas.jfif": "/my-react-redux-app/static/media/viettas.5023b2dd6439d2c65432.jfif",
+    "index.html": "/my-react-redux-app/index.html",
+    "main.e7a8797d.css.map": "/my-react-redux-app/static/css/main.e7a8797d.css.map",
+    "main.598b6302.js.map": "/my-react-redux-app/static/js/main.598b6302.js.map",
+    "787.77e5b46f.chunk.js.map": "/my-react-redux-app/static/js/787.77e5b46f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7a8797d.css",
+    "static/js/main.598b6302.js"
+  ]
+}
