@@ -20,7 +20,36 @@ const SideBar = ({ data }) => {
                             <span>Dashboard</span>
                         </Link>
                     </li>
-
+                    <li class="nav-item">
+                        <Link
+                            class="nav-link collapsed"
+                            data-bs-target="#icons-nav"
+                            data-bs-toggle="collapse"
+                            href="#"
+                        >
+                            <i class="bi bi-gem"></i>
+                            <span>F.A.Q</span>
+                            <i class="bi bi-chevron-down ms-auto"></i>
+                        </Link>
+                        <ul
+                            id="icons-nav"
+                            class="nav-content collapse "
+                            data-bs-parent="#sidebar-nav"
+                        >
+                            <li>
+                                <Link to="/FAQ">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Chính sách bảo mật</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/DKSD">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Điều khoản và điều kiện sử dụng</span>
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
                     {/* sidebar dataa */}
                     {data.DataResults
                         ? data.DataResults.map(

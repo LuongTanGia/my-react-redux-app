@@ -21,6 +21,7 @@ const CheckMode = ({ mode, dispatch }) => {
       </div>
 
       <h1>Welcome to my React App!</h1>
+      
     </div>
   );
 };

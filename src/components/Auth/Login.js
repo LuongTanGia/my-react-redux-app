@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { POSTAPI } from "../../action/action";
 import API from "../../API/API";
-
+import Cookies from "js-cookie";
 import VietTas from "../../assets/img/viettas.jfif";
 import "./auth.css";
 
@@ -30,6 +30,7 @@ const UserList = ({ data, POSTAPI }) => {
     const handleLogin = () => {
         POSTAPI(API.DANGNHAP, { TokenID: data.TKN, RemoteDB: selectedOption });
         localStorage.setItem("firstLogin", true);
+        Cookies.set("isCookie", "false");
         window.location.href = "/";
     };
     return (
